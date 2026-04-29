@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mason Krems</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --main-blue: rgb(0, 129, 189);
+        }
+
+        /* Top Bar */
+        #topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            background: white;
+            z-index: 10;
+        }
+
+        #bigmasonkrems {
+            font-size: 184%;
+            margin: 0;
+        }
+
+        #fixedham {
+            font-size: 1.5rem;
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #fixedham:hover,
+        #bigmasonkrems:hover {
+            color: var(--main-blue);
+        }
+
+        /* Facts Section */
+        #factsSection {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        #factsSection h2 {
+            text-align: center;
+            color: var(--main-blue);
+            margin-bottom: 20px;
+        }
+
+        .fact {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: #f5f5f5;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-left: 5px solid var(--main-blue);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .fact:hover {
+            cursor: pointer;
+            transform: translateX(5px);
+            background: #eaf6fb;
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 40;
+        }
+
+        #overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Sidebar */
+        #sideMenu {
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            top: 0;
+            right: -260px;
+            background: white;
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease;
+            padding-top: 60px;
+            z-index: 50;
+        }
+
+        #sideMenu.open {
+            right: 0;
+        }
+
+        /* Close button */
+        #closeBtn {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        #closeBtn:hover {
+            color: var(--main-blue);
+        }
+
+        /* Links */
+        #sideMenu a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            transition: 0.2s;
+        }
+
+        #sideMenu a:hover {
+            background: var(--main-blue);
+            color: white;
+        }
+
+        ::selection {
+            background: var(--main-blue);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div id="topbar">
+        <p id="bigmasonkrems">Mason Krems</p>
+        <p id="fixedham">☰</p>
+    </div>
+
+    <!-- Facts Section -->
+    <div id="factsSection">
+        <h2>Quick Facts</h2>
+
+        <a class="fact" href="age.html">🏄 Age: 12</a>
+        <a class="fact" href="location.html">📍 Location: San Diego</a>
+        <a class="fact" href="wave.html">🌊 Favorite Wave: 15th Street Del Mar</a>
+        <a class="fact" href="goal.html">🎯 Goal: Increase My Spray</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div id="sideMenu">
+        <div id="closeBtn">✕</div>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("sideMenu");
+            const overlay = document.getElementById("overlay");
+            const ham = document.getElementById("fixedham");
+
+            menu.classList.toggle("open");
+            overlay.classList.toggle("show");
+
+            ham.innerHTML = menu.classList.contains("open") ? "✕" : "☰";
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById("sideMenu");
+            const overlay = document.getElementById("overlay");
+            const ham = document.getElementById("fixedham");
+
+            menu.classList.remove("open");
+            overlay.classList.remove("show");
+            ham.innerHTML = "☰";
+        }
+
+        document.getElementById("fixedham").addEventListener("click", toggleMenu);
+        document.getElementById("overlay").addEventListener("click", closeMenu);
+        document.getElementById("closeBtn").addEventListener("click", closeMenu);
+    </script>
+
+</body>
+
+</html>
